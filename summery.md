@@ -17,7 +17,7 @@ If it seems to go over 10 minutes that is ok, I will condense it when I present 
 
 [my current github scrolly](https://github.com/jraymondt/divscrolly)
 
-### Presenting findings to the class:
+### Presenting findings to the class
 
 ![vidja]()
 

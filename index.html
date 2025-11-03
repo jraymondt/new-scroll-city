@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Immersive Scrollytelling Journey</title>
-  <style>
-    :root {
+  <meta name="description" content="Interactive scrolly telling journey through modern learning spaces - explore floors, amenities, and experiences.">
+  <meta property="og:title" content="Immersive Learning Journey">
+  <meta property="og:description" content="Discover our innovative campus through an interactive scrolling experience.">
+  <link rel="icon" type="image/x-icon" href="/favicon.svg">
+  <title>Immersive Scrollytelling Journey with James Bob</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<style>
+:root {
       color-scheme: dark;
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: clamp(16px, 0.95vw + 0.75rem, 20px);
@@ -101,6 +110,53 @@
       line-height: 1.6;
       color: rgba(226, 232, 240, 0.9);
     }
+    
+    .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: rgba(139, 92, 246, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 16px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    }
+
+    .hero-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(56, 189, 248, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    }
+
+    .hero-cta::after {
+    content: "↓";
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+    }
+
+    .hero-cta:hover {
+    transform: translateY(-2px);
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3);
+    }
+
+    .hero-cta:hover::before {
+    opacity: 1;
+    }
+
+    .hero-cta:hover::after {
+    transform: translateY(3px);
+    }
 
     .story {
       position: relative;
@@ -166,76 +222,302 @@
       color: rgba(226, 232, 240, 0.75);
     }
 
-    .story-steps {
-      display: grid;
-      gap: clamp(3rem, 10vw, 7rem);
+/* Uncomment and enhance the story-steps section: */
+.story-steps {
+  display: grid;
+  gap: clamp(4rem, 12vw, 8rem); /* Increased spacing between steps */
+}
+
+.story-step {
+  position: relative;
+  padding-left: clamp(2rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+  min-height: clamp(70vh, 50vw, 90vh);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: clamp(1.5rem, 2.5vw, 2.5rem); /* More space between elements */
+  color: rgba(226, 232, 240, 0.85); /* Improved text contrast */
+  transform: translateY(60px);
+  opacity: 0.4; /* Slightly more visible when inactive */
+  transition: opacity 0.65s ease, transform 0.65s ease, color 0.65s ease;
+  background: rgba(15, 23, 42, 0.3); /* Subtle background for better readability */
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.story-step::before {
+  content: "";
+  position: absolute;
+  top: clamp(2rem, 4vw, 3rem);
+  left: 0;
+  width: 12px; /* Slightly larger indicator */
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.9);
+  transition: transform 0.5s ease, background 0.6s ease, border-color 0.6s ease;
+}
+
+.story-step h3 {
+  font-size: clamp(2rem, 4vw, 3rem); /* Larger headings */
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem) 0; /* Added bottom margin */
+  line-height: 1.3; /* Better line height */
+  color: inherit;
+  font-weight: 600;
+}
+
+.story-step p {
+  margin: 0 0 clamp(1.5rem, 3vw, 2rem) 0; /* More space after paragraphs */
+  max-width: 55ch; /* Slightly narrower for better readability */
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem); /* Larger text */
+  line-height: 1.75; /* More generous line spacing */
+  color: rgba(226, 232, 240, 0.9); /* Better contrast */
+}
+
+.story-step .microcopy {
+  font-size: 0.95rem; /* Slightly larger */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.8); /* Better contrast */
+  margin-bottom: clamp(0.5rem, 1vw, 1rem); /* Space below microcopy */
+}
+
+.story-step.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.5); /* Stronger background when active */
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.story-step.is-active::before {
+  transform: scale(1.8);
+  background: var(--accent);
+  border-color: transparent;
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.55);
+}
+
+.story-step.is-active h3 {
+  color: #ffffff; /* Pure white for active headings */
+}
+
+.story-step.is-active p {
+  color: rgba(248, 250, 252, 0.95); /* Better contrast for active text */
+}
+
+/* Improve overall story spacing */
+.story {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 520px) minmax(0, 1fr); /* Slightly wider media column */
+  gap: clamp(4rem, 8vw, 8rem); /* More space between columns */
+  padding: clamp(5rem, 10vw, 8rem) min(8vw, 8rem) clamp(7rem, 12vw, 12rem); /* More generous padding */
+}
+
+/* Improve hero spacing */
+header.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: clamp(4rem, 10vw, 7rem) clamp(2rem, 8vw, 10rem); /* More breathing room */
+}
+
+header.hero h1 {
+  font-size: clamp(3rem, 7vw, 5.5rem); /* Larger hero text */
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem); /* More space below title */
+  background: linear-gradient(120deg, #38bdf8, var(--accent));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+header.hero p {
+  max-width: 50ch; /* Slightly narrower for better readability */
+  margin: 0 auto clamp(2rem, 4vw, 3rem) auto; /* More space before CTA */
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem); /* Larger text */
+  line-height: 1.7; /* Better line spacing */
+  color: rgba(226, 232, 240, 0.95); /* Better contrast */
+}
+
+/* Improve callout spacing */
+.callout {
+  padding: clamp(4rem, 8vw, 6rem) clamp(2rem, 8vw, 10rem) clamp(5rem, 8vw, 8rem);
+  text-align: center;
+}
+
+.callout h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+
+.callout p {
+  max-width: 55ch;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  color: rgba(226, 232, 240, 0.9); /* Better contrast */
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  line-height: 1.7;
+}
+
+/* Mobile improvements */
+@media (max-width: 980px) {
+  .story-step {
+    padding-left: clamp(1.5rem, 4vw, 2rem);
+    padding-right: clamp(1rem, 3vw, 1.5rem);
+    min-height: 70vh; /* More breathing room on mobile */
+  }
+  
+  .story-steps {
+    gap: clamp(3rem, 8vw, 5rem); /* Generous mobile spacing */
+  }
+}
+
+
+    /* Enhanced CTA Buttons */
+    .story-step a, .callout a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.8rem;
+    background: linear-gradient(135deg, var(--accent), #38bdf8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.025em;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 20px rgba(139, 92, 246, 0.3),
+        0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
-    .story-step {
-      position: relative;
-      padding-left: clamp(1.8rem, 3vw, 2.4rem);
-      min-height: clamp(70vh, 50vw, 90vh);
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      gap: clamp(1rem, 1.5vw, 1.6rem);
-      color: rgba(226, 232, 240, 0.6);
-      transform: translateY(60px);
-      opacity: 0.35;
-      transition: opacity 0.65s ease, transform 0.65s ease, color 0.65s ease;
+    .story-step a::before, .callout a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
     }
 
-    .story-step::before {
-      content: "";
-      position: absolute;
-      top: 1rem;
-      left: 0;
-      width: 10px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 2px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.8);
-      transition: transform 0.5s ease, background 0.6s ease, border-color 0.6s ease;
+    .story-step a::after {
+    content: "→";
+    font-size: 1.1em;
+    margin-left: 0.2rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .story-step h3 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      margin: 0;
-      line-height: 1.2;
-      color: inherit;
+    .story-step a:hover, .callout a:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 32px rgba(139, 92, 246, 0.4),
+        0 4px 16px rgba(56, 189, 248, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
     }
 
-    .story-step p {
-      margin: 0;
-      max-width: 62ch;
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-      line-height: 1.7;
+    .story-step a:hover::before, .callout a:hover::before {
+    opacity: 1;
     }
 
-    .story-step .microcopy {
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(148, 163, 184, 0.7);
+    .story-step a:hover::after {
+    transform: translateX(4px);
     }
 
-    .story-step.is-active {
-      opacity: 1;
-      transform: translateY(0);
-      color: #f8fafc;
+    /* Premium Skip Link */
+    .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
     }
 
+    .skip-link:focus {
+    top: 20px;
+    transform: translateX(-50%) translateY(0);
+    }
+
+    /* Enhanced Scroll Progress */
+    .scroll-progress::after {
+    background: linear-gradient(90deg, 
+        #38bdf8 0%, 
+        var(--accent) 50%, 
+        #f472b6 100%);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+    }
+
+    /* Glowing Accent Elements */
     .story-step.is-active::before {
-      transform: scale(1.8);
-      background: var(--accent);
-      border-color: transparent;
-      box-shadow: 0 0 24px rgba(139, 92, 246, 0.55);
+    background: var(--accent);
+    border-color: transparent;
+    box-shadow: 
+        0 0 24px rgba(139, 92, 246, 0.7),
+        0 0 8px rgba(139, 92, 246, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
+    /* Enhanced Media Frame */
+    .media-frame {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.4));
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 
+        0 25px 80px rgba(15, 23, 42, 0.6),
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .media-frame::after {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(145deg, 
+        rgba(255, 255, 255, 0.05), 
+        transparent 40%);
+    }
+
+    /* Subtle Text Glow for Active Steps */
     .story-step.is-active h3 {
-      color: inherit;
+    text-shadow: 0 0 20px rgba(248, 250, 252, 0.1);
     }
 
+    /* Enhanced Microcopy */
+    .story-step .microcopy {
+    position: relative;
+    padding-left: 1rem;
+    }
+
+    .story-step .microcopy::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+    }
+
+    .story-step.is-active .microcopy::before {
+    box-shadow: 0 0 8px var(--accent);
+    opacity: 1;
+}
     .callout {
       padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 6vw, 8rem) clamp(4rem, 6vw, 7rem);
       text-align: center;
@@ -317,33 +599,38 @@
         scroll-behavior: auto !important;
       }
     }
-  </style>
-</head>
+</style>
+
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <header class="hero">
+<header class="hero">
+  <div>
+    <p class="microcopy">Scroll to explore</p>
+    <h1>Ride Elevator to the Data Containment Unit</h1>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <p>
+      A scrolly telling sequence that pairs motion, mood, and imagery. Move through four floating
+      moments from the windows to the basement.
+    </p>
+    <!-- Add a hero CTA -->
     <div>
-      <p class="microcopy">Scroll to explore</p>
-      <h2>Ride Elevator to the Data Containment Unit</h2>
-      <p>
-        A scrollytelling sequence that pairs motion, mood, and imagery. Move through four floating
-        moments from the windows to the basement.
-      </p>
+      <a href="#main-content" class="hero-cta">Begin Journey</a>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="story">
+  <main class="story" id="main-content">
     <figure class="story-media" aria-labelledby="media-caption">
       <div class="media-frame">
-        <img src="https://jraymondt.com/images/exemplar-761.webp" alt="Sunlit Perth" id="story-media" />
+        <img src="https://jraymondt.com/images/exemplar-761.webp" alt="Perth's modern skyline" id="story-media" />
       </div>
       <figcaption class="media-caption" id="media-caption">A Radiant AI generated City</figcaption>
     </figure>
 
     <div class="story-steps">
       <article class="story-step" data-media="https://jraymondt.com/images/exemplar-756.webp" data-accent="#38bdf8" data-bg="https://jraymondt.com/images/exemplar-756.webp" data-caption="North Metro Campus">
-        <span class="microcopy">Floor Four</span>
+        <span class="microcopy">Ground Floor</span>
         <h3>Step into the Light</h3>
         <p>
           Suspended pools of light glide overhead as ambient pixels emerge as you scroll into life.
@@ -352,9 +639,10 @@
       </article>
 
       <article class="story-step" data-media="https://jraymondt.com/images/exemplar-712.webp" data-accent="#f472b6" data-bg="https://jraymondt.com/images/exemplar-712.webp" data-caption="Panoramic Fish">
-        <span class="microcopy">Level 28</span>
-        <h3>Float Through the Sky Lounge into the O'Briens</h3>
+        <span class="microcopy">Level 8</span>
+        <h3>Float Through the Sky Lounge into the O’Brien’s</h3>
         <p>
+          Connect and collaborate in our contemporary dining areas and social lounges.
           Blur the boundary between culinary delights and data insights. 
         </p>
         <a href="https://theexemplar.com.au/dining/" target="_blank" rel="noopener">Dining</a>
@@ -364,16 +652,19 @@
         <span class="microcopy">Level 66</span>
         <h3>Joomba Kanangoor & Djidar Kookoominy</h3>
         <p>
-          Synchronize lighting with the timeline of your story. Fade from cool obscurity to blues and weave in stacked layers, testimonials that wept.
+          Explore state-of-the-art facilities designed for hands-on learning and creative expression.
+          Synchronize lighting with the timeline of your story. 
+          Fade from cool obscurity to blues and weave in stacked layers, forging testimonials that wept.
         </p>
         <a href="https://theexemplar.com.au/spa-beauty/" target="_blank" rel="noopener">Hair & Beauty</a>
       </article>
 
-      <article class="story-step" data-media="https://jraymondt.com/images/exemplar-494.webp" data-accent="#34d399" data-bg="https://jraymondt.com/images/exemplar-494.webp" data-caption="Rooftop Event Observatory">
+      <article class="story-step" data-media="https://jraymondt.com/images/exemplar-3.webp" data-accent="#34d399" data-bg="https://jraymondt.com/images/exemplar-3.webp" data-caption="Rooftop Event Observatory">
         <span class="microcopy">Rooftop halo</span>
         <h3>Ascend to the Events Observatory</h3>
         <p>
-          This final scene to cinnamon scrolls over a deathly aurora. .
+          Reach new heights in our premier event space with panoramic city views.
+          Experience the pinnacle from our events observatory, where networking comodulates innovation under the stars.
         </p>
         <a href="https://theexemplar.com.au/events/" target="_blank" rel="noopener">Events</a>
       </article>
@@ -381,9 +672,9 @@
   </main>
 
   <section class="callout">
-    <h2>Lets explore!</h2>
+    <h2>Let’s explore! </h2>
     <p>
-      Opening up new possibilities for content delivery for students and lecturers alike.
+      Opening new possibilities for content delivery for students and lecturers alike.
     </p>
     <a href="https://theexemplar.com.au/intranet/" target="_blank" rel="noopener">Dive into document docs?</a>
   </section>
@@ -392,62 +683,65 @@
     Crafted for immersive storytelling by a team of humans? Adapt, remix, and extend.
   </footer>
 
-  <script>
-    const root = document.documentElement;
-    const steps = document.querySelectorAll('.story-step');
-    const media = document.getElementById('story-media');
-    const caption = document.getElementById('media-caption');
+<script type="text/javascript">
+  const root = document.documentElement;
+  const steps = document.querySelectorAll('.story-step');
+  const media = document.getElementById('story-media');
+  const caption = document.getElementById('media-caption');
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          steps.forEach((step) => step.classList.remove('is-active'));
-          const target = entry.target;
-          target.classList.add('is-active');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        steps.forEach((step) => step.classList.remove('is-active'));
+        const target = entry.target;
+        target.classList.add('is-active');
 
-          const mediaSrc = target.dataset.media;
-          const mediaCaption = target.dataset.caption;
-          const accent = target.dataset.accent;
-          const background = target.dataset.bg;
+        const mediaSrc = target.dataset.media;
+        const mediaCaption = target.dataset.caption;
+        const accent = target.dataset.accent;
+        const background = target.dataset.bg;
 
-          if (mediaSrc && mediaSrc !== media.src) {
-            media.setAttribute('src', mediaSrc);
-          }
-          if (mediaCaption) {
-            caption.textContent = mediaCaption;
-            media.setAttribute('alt', mediaCaption);
-          }
-          if (accent) {
-            root.style.setProperty('--accent', accent);
-          }
-          if (background) {
-            root.style.setProperty('--bg-image', `url(${background})`);
-          }
-        });
-      },
-      {
-        threshold: 0.6,
-      }
-    );
-
-    steps.forEach((step) => observer.observe(step));
-
-    if (steps.length) {
-      steps[0].classList.add('is-active');
-      root.style.setProperty('--bg-image', `url(${steps[0].dataset.bg})`);
+        if (mediaSrc && mediaSrc !== media.src) {
+          media.setAttribute('src', mediaSrc);
+        }
+        if (mediaCaption) {
+          caption.textContent = mediaCaption;
+          media.setAttribute('alt', mediaCaption);
+        }
+        if (accent) {
+          root.style.setProperty('--accent', accent);
+        }
+        if (background) {
+          root.style.setProperty('--bg-image', `url(${background})`);
+        }
+      });
+    },
+    {
+      threshold: 0.6,
     }
+  );
 
-    const updateProgress = () => {
-      const doc = document.documentElement;
-      const scrolled = doc.scrollTop || document.body.scrollTop;
-      const maxScroll = doc.scrollHeight - doc.clientHeight;
-      const progress = maxScroll > 0 ? scrolled / maxScroll : 0;
-      root.style.setProperty('--scroll-progress', progress.toFixed(3));
-    };
+  steps.forEach((step) => observer.observe(step));
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
-  </script>
+  if (steps.length) {
+    steps[0].classList.add('is-active');
+    root.style.setProperty('--bg-image', `url(${steps[0].dataset.bg})`);
+  }
+
+  const updateProgress = () => {
+    const doc = document.documentElement;
+    const scrolled = doc.scrollTop || document.body.scrollTop;
+    const maxScroll = doc.scrollHeight - doc.clientHeight;
+    const progress = maxScroll > 0 ? scrolled / maxScroll : 0;
+    root.style.setProperty('--scroll-progress', progress.toFixed(3));
+  };
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>
+  
 </body>
 </html>
+
+

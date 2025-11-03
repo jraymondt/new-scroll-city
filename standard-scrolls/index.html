@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Scrolly-Telling Dialogue</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f1f4fa; }
+.dialogue-section { height: 80vh; display: flex; align-items: center; justify-content: center; }
+.dialogue-box {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .6s, transform .6s cubic-bezier(.4,2,.3,1);
+  background: #fff; padding: 24px 36px; box-shadow: 0 6px 32px rgba(0,0,0,0.15);
+  border-radius: 16px; font-size: 1.3em; max-width: 420px; text-align: center;
+}
+.dialogue-section.visible .dialogue-box { opacity: 1; transform: translateY(0); }
+.dialogue-section:nth-child(even) .dialogue-box { background: #eef1fb; }
+</style>
+</head>
+<body>
+
+<div class="dialogue-section"><div class="dialogue-box">Ground Floor: Welcome to the building lobby. Reception is here.</div></div>
+<div class="dialogue-section"><div class="dialogue-box">Level 1: Offices and collaborative workspaces.</div></div>
+<div class="dialogue-section"><div class="dialogue-box">Level 2: Conference rooms and kitchenettes.</div></div>
+<div class="dialogue-section"><div class="dialogue-box">Level 3: Rooftop gym and green terrace.</div></div>
+
+<script>
+const dialogueSections = document.querySelectorAll('.dialogue-section');
+function checkVisibility() {
+  dialogueSections.forEach(section => {
+    const top = section.getBoundingClientRect().top;
+    if(top < window.innerHeight * 0.7) {
+      section.classList.add('visible');
+    } else {
+      section.classList.remove('visible');
+    }
+  });
+}
+window.addEventListener('scroll', checkVisibility);
+checkVisibility(); // Initialize on page load
+</script>
+</body>
+</html>
